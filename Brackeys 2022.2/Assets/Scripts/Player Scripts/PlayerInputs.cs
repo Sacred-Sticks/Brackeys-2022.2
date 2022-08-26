@@ -9,14 +9,17 @@ public class PlayerInputs : MonoBehaviour
     [SerializeField] private string playerActionMap;
     [Space]
     [SerializeField] private string movementActionStr;
+    [SerializeField] private string jumpingActionStr;
     [SerializeField] private string aimingActionStr;
     [SerializeField] private string shootingActionStr;
 
     private InputAction movementAction;
+    private InputAction jumpingAction;
     private InputAction aimingAction;
     private InputAction shootingAction;
 
     private Vector2 movementValue;
+    private float jumpingValue;
     private Vector2 aimingValue;
     private float shootingValue;
 
@@ -34,12 +37,17 @@ public class PlayerInputs : MonoBehaviour
         var actionMap = playerInputs.FindActionMap(playerActionMap);
 
         movementAction = actionMap.FindAction(movementActionStr);
+        jumpingAction = actionMap.FindAction(jumpingActionStr);
         aimingAction = actionMap.FindAction(aimingActionStr);
         shootingAction = actionMap.FindAction(shootingActionStr);
 
         movementAction.performed += OnMovementChanged;
         movementAction.canceled += OnMovementChanged;
         movementAction.Enable();
+
+        jumpingAction.performed += OnJumpChanged;
+        jumpingAction.canceled += OnJumpChanged;
+        jumpingAction.Enable();
 
         aimingAction.performed += OnAimingChanged;
         aimingAction.canceled += OnAimingChanged;
@@ -55,6 +63,11 @@ public class PlayerInputs : MonoBehaviour
         movementValue = context.ReadValue<Vector2>();
     }
 
+    private void OnJumpChanged(InputAction.CallbackContext context)
+    {
+        jumpingValue = context.ReadValue<float>();
+    }
+
     private void OnAimingChanged(InputAction.CallbackContext context)
     {
         aimingValue = context.ReadValue<Vector2>();
@@ -68,6 +81,11 @@ public class PlayerInputs : MonoBehaviour
     public Vector2 GetMovement()
     {
         return movementValue;
+    }
+
+    public float GetJump()
+    {
+        return jumpingValue;
     }
 
     public Vector2 GetAim()

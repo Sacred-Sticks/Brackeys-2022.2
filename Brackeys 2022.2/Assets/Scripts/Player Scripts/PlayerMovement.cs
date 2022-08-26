@@ -6,11 +6,18 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float movementSpeed;
+    [SerializeField] private float jumpHeight;
+    [Space]
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private float groundDistance;
 
     private Rigidbody body;
 
     private Vector2 movementInputs;
-    private Vector3 playerVelocity;
+    private float jumpInput;
+
+    private float _verticalVelocity = 0;
+    private Vector3 _playerVelocity;
 
     private void Awake()
     {
@@ -19,11 +26,31 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        ReadInputs();
+        if (CheckGrounded())
+        {
+            _verticalVelocity = Mathf.Sqrt(2 * jumpHeight * -Physics.gravity.y);
+        } else
+        {
+            _verticalVelocity = 0;
+        }
+
+        movementInputs *= movementSpeed;
+
+        _playerVelocity = transform.forward * movementInputs.y + transform.up * body.velocity.y + transform.right * movementInputs.x;
+        _playerVelocity += transform.up * _verticalVelocity * jumpInput;
+
+        body.velocity = _playerVelocity;
+    }
+
+    private void ReadInputs()
+    {
         movementInputs = PlayerInputs.Instance.GetMovement();
+        jumpInput = PlayerInputs.Instance.GetJump();
+    }
 
-        playerVelocity = transform.forward * movementInputs.y + transform.right * movementInputs.x;
-        playerVelocity *= movementSpeed;
-
-        body.velocity = playerVelocity;
+    private bool CheckGrounded()
+    {
+        return Physics.CheckSphere(transform.position, groundDistance, groundLayer);
     }
 }
