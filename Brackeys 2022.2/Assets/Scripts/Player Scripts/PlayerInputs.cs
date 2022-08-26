@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputs : MonoBehaviour
 {
+    public static PlayerInputs Instance;
+
     [SerializeField] private InputActionAsset playerInputs;
     [SerializeField] private string playerActionMap;
     [Space]
@@ -20,6 +22,15 @@ public class PlayerInputs : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            Instance = this;
+        } else
+        {
+            Destroy(gameObject);
+        }
+
         var actionMap = playerInputs.FindActionMap(playerActionMap);
 
         movementAction = actionMap.FindAction(movementActionStr);
