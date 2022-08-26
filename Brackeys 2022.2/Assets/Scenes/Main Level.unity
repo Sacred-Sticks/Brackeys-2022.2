@@ -6987,47 +6987,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75a110d2bfabfde449979413d6644971, type: 3}
---- !u!1 &818338589 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4673608676670900267, guid: 3541442719737bb47b26de37083c5670, type: 3}
-  m_PrefabInstance: {fileID: 5483862096542846454}
-  m_PrefabAsset: {fileID: 0}
---- !u!195 &818338591
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 818338589}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.4
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
---- !u!136 &818338592
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 818338589}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.4
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &821426052
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17076,18 +17035,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 963194229, guid: e7ffe66f786734d48aa73433b5a2862d, type: 3}
-      propertyPath: lookSensitivity
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 1358688355, guid: e7ffe66f786734d48aa73433b5a2862d, type: 3}
-      propertyPath: movementSpeed
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1358688356, guid: e7ffe66f786734d48aa73433b5a2862d, type: 3}
-      propertyPath: m_Constraints
-      value: 112
-      objectReference: {fileID: 0}
     - target: {fileID: 2373928900903318917, guid: e7ffe66f786734d48aa73433b5a2862d, type: 3}
       propertyPath: m_RootOrder
       value: 2

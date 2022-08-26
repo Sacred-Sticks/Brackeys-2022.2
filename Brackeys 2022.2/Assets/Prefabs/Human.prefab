@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e087d22d7402f8e4eaa12056873181ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookSensitivity: 100
+  lookSensitivity: 50
   lookRange: 90
 --- !u!1 &3150887434268471103
 GameObject:
@@ -163,7 +163,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &1358688355
 MonoBehaviour:
@@ -177,7 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc227c2d2af7b7f4289e48d1538f7a71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 3
+  movementSpeed: 7
   jumpHeight: 2
   groundLayer:
     serializedVersion: 2
