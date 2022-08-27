@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
         {
             _verticalVelocity = 0;
         }
-
+        movementInputs.Normalize();
         movementInputs *= movementSpeed;
 
         _playerVelocity = transform.forward * movementInputs.y + transform.up * body.velocity.y + transform.right * movementInputs.x;
