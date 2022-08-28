@@ -5,11 +5,16 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement Instance;
+
     [SerializeField] private float movementSpeed;
     [SerializeField] private float jumpHeight;
     [Space]
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float groundDistance;
+    [Space]
+    [SerializeField] private LayerMask wallLayer;
+    [SerializeField] private float wallDistance;
 
     private Rigidbody body;
 
@@ -22,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         body = GetComponent<Rigidbody>();
+
+        Instance = this;
     }
 
     void FixedUpdate()
@@ -34,7 +41,6 @@ public class PlayerMovement : MonoBehaviour
         {
             _verticalVelocity = 0;
         }
-        movementInputs.Normalize();
         movementInputs *= movementSpeed;
 
         _playerVelocity = transform.forward * movementInputs.y + transform.up * body.velocity.y + transform.right * movementInputs.x;
@@ -49,8 +55,22 @@ public class PlayerMovement : MonoBehaviour
         jumpInput = PlayerInputs.Instance.GetJump();
     }
 
-    private bool CheckGrounded()
+    public bool CheckGrounded()
     {
         return Physics.CheckSphere(transform.position, groundDistance, groundLayer);
+    }
+
+    public int CheckSide(float distanceFromCenter)
+    {
+        int value = 0;
+        if (Physics.CheckSphere(transform.position + transform.right * distanceFromCenter, wallDistance, wallLayer))
+        {
+            value += 1;
+        }
+        if (Physics.CheckSphere(transform.position - transform.right * distanceFromCenter, wallDistance, wallLayer))
+        {
+            value -= 1;
+        }
+        return value;
     }
 }
